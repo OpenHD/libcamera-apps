@@ -29,6 +29,7 @@ jobs:
             'https://dl.cloudsmith.io/public/openhd/openhd-2-2-evo/setup.deb.sh' \
             | sudo -E bash
             sudo apt update
+            apt install -y libcamera-dev
             apt install -y libcamera-openhd
             echo "debug cam install"
             sudo apt install -y libboost-dev git python3-pip ruby-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libegl1-mesa-dev cmake libboost-program-options-dev libdrm-dev libexif-dev libegl1-mesa-dev
