@@ -32,15 +32,13 @@ jobs:
             gem install fpm
             sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
             mkdir -p /opt/libcamera-apps-openhd
-            meson build
+            mkdir build
             cd build
-            meson configure -Dpipelines=raspberrypi -Dtest=false --prefix=/opt/libcamera-apps-openhd
-            cd ..
-            ninja -C build
-
-            sudo ninja -C /libcamera/build install
-
-            fpm -a armhf -s dir -t deb -n libcamera-apps-openhd -v 0.1 -C /opt/libcamera-apps-openhd -p libcamera-apps-openhd_VERSION_ARCH.deb
+            cmake ...
+            DESTDIR=/opt/libcamera-apps-openhd
+            make -j4
+        
+            fpm -a armhf -s dir -t deb -n libcamera-apps-openhd -v 0.1 -C /opt/libcamera-apps-openhd -p libcamera-_VERSION_ARCH.deb
 
     - name: Upload to Github
       uses: 'actions/upload-artifact@v2'
