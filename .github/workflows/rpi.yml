@@ -25,12 +25,15 @@ jobs:
         import_github_env: true
         commands: |
             ls -a
+            curl -1sLf \
+            'https://dl.cloudsmith.io/public/openhd/openhd-2-2-evo/setup.deb.sh' \
+            | sudo -E bash
             sudo apt update
             sudo apt install -y libboost-dev git python3-pip ruby-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libegl1-mesa-dev cmake libboost-program-options-dev libdrm-dev libexif-dev libegl1-mesa-dev
             sudo pip3 install pyyaml ply jinja2
             sudo pip3 install --upgrade meson
             gem install fpm
-            sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+            sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libcamera-openhd
             mkdir -p /opt/libcamera-apps-openhd
             mkdir build
             cd build
