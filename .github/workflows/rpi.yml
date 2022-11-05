@@ -34,7 +34,7 @@ jobs:
             mkdir -p /opt/libcamera-apps-openhd
             mkdir build
             cd build
-            cmake ...
+            cmake ..
             DESTDIR=/opt/libcamera-apps-openhd
             make -j4
         
