@@ -32,12 +32,22 @@ jobs:
             sudo apt remove -y libcamera*
             apt install -y libcamera-openhd libdrm-dev
             echo "debug cam install"
-            sudo apt install -y libboost-dev git python3-pip ruby-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libegl1-mesa-dev cmake libboost-program-options-dev libdrm-dev libexif-dev libegl1-mesa-dev
+            sudo apt install -y libboost-dev git python3-pip ruby-dev 
+            sudo apt install -y libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 
+            sudo apt install -y meson libegl1-mesa-dev cmake libboost-program-options-dev libdrm-dev libexif-dev libegl1-mesa-dev
             sudo pip3 install pyyaml ply jinja2
             sudo pip3 install --upgrade meson
             gem install fpm
             sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libcamera-openhd
             mkdir -p /opt/libcamera-apps-openhd
+            git clone https://github.com/anholt/libepoxy.git
+            cd libepoxy
+            mkdir _build
+            cd _build
+            meson
+            ninja
+            sudo ninja install
+            cd ../../
             mkdir build
             cd build
             cmake ..
