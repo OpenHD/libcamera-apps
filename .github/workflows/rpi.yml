@@ -30,7 +30,7 @@ jobs:
             | sudo -E bash
             sudo apt update
             sudo apt remove -y libcamera*
-            apt install -y libcamera-openhd
+            apt install -y libcamera-openhd libdrm-dev
             echo "debug cam install"
             sudo apt install -y libboost-dev git python3-pip ruby-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libegl1-mesa-dev cmake libboost-program-options-dev libdrm-dev libexif-dev libegl1-mesa-dev
             sudo pip3 install pyyaml ply jinja2
