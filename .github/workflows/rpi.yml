@@ -39,34 +39,18 @@ jobs:
             sudo pip3 install --upgrade meson
             gem install fpm
             sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libcamera-openhd
-            mkdir -p /opt/libcamera-apps-openhd
-            git clone git://linuxtv.org/libcamera.git
-            cd libcamera
             meson build
             cd build
             meson configure -Dpipelines=raspberrypi -Dtest=false
             cd ..
             ninja -C build
-            wget https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver/releases/download/ipa-v0.01/ipa_rpi.tar.xz
-            tar xvf ipa_rpi.tar.xz
-            cp ipa_rpi.so libcamera/build/src/ipa/raspberrypi/
-            cd ..
-            sudo ninja -C build install
-            git clone https://github.com/anholt/libepoxy.git
-            cd libepoxy
-            mkdir _build
-            cd _build
-            meson
-            ninja
-            sudo ninja install
-            cd ../../
             mkdir build
             cd build
             cmake ..
             DESTDIR=/opt/libcamera-apps-openhd
             make -j4
         
-            fpm -a armhf -s dir -t deb -n libcamera-apps-openhd -v 0.1 -C /opt/libcamera-apps-openhd -p libcamera-_VERSION_ARCH.deb
+            fpm -a armhf -s dir -t deb -n libcamera-apps -v 10.1 -C /opt/libcamera-apps-openhd -p libcamera-apps_VERSION_ARCH.deb
 
     - name: Upload to Github
       uses: 'actions/upload-artifact@v2'
