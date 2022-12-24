@@ -39,17 +39,10 @@ jobs:
             sudo pip3 install --upgrade meson
             gem install fpm
             sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libcamera-openhd
-            cd ..
-            meson build
-            cd build
             meson configure -Dpipelines=raspberrypi -Dtest=false
-            cd ..
-            ninja -C build
-            mkdir build
-            cd build
-            cmake ..
+            meson build
             DESTDIR=/opt/libcamera-apps-openhd
-            make -j4
+            ninja -C build install
         
             fpm -a armhf -s dir -t deb -n libcamera-apps -v 10.1 -C /opt/libcamera-apps-openhd -p libcamera-apps_VERSION_ARCH.deb
 
