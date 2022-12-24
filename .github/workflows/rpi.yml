@@ -39,7 +39,6 @@ jobs:
             sudo pip3 install --upgrade meson
             gem install fpm
             sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libcamera-openhd
-            cd libcamera-apps
             mkdir build
             cd build
             cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/usr -DENABLE_DRM=1 -DENABLE_X11=0 -DENABLE_QT=0 -DENABLE_OPENCV=0 -DENABLE_TFLITE=0
