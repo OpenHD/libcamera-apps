@@ -39,9 +39,10 @@ jobs:
             sudo pip3 install --upgrade meson
             gem install fpm
             sudo apt install -y libglib2.0-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libcamera-openhd
-            meson setup build --destdir /tmp/libcamera-apps-openhd -Denable_libav=true -Denable_drm=true -Denable_egl=true -Denable_qt=true -Denable_opencv=false -Denable_tflite=false
+            meson setup build  -Denable_libav=true -Denable_drm=true -Denable_egl=true -Denable_qt=true -Denable_opencv=false -Denable_tflite=false
             meson compile -C build 
             sudo ldconfig
+            DESTDIR=/tmp/libcamera-apps-openhd meson install
             cd ..
             fpm -a armhf -s dir -t deb -n libcamera-apps-openhd -v 1.0.3 -C /tmp/libcamera-apps-openhd -p libcamera-apps-openhd_VERSION_ARCH.deb -d "libcamera-openhd" --conflicts "libcamera-apps"
 
